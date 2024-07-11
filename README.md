@@ -43,7 +43,7 @@ Make sure you have the following installed:
 
 ## UI
 
-![Screenshot Description](Img/01.jpg)
+![Screenshot Description](Img/02.jpg)
 
 ## Project Feature Contributing
 
