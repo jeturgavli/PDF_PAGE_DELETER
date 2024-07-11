@@ -1,4 +1,4 @@
-import tkinter as tk
+import customtkinter as ctk
 import webbrowser
 from tkinter import filedialog, messagebox
 from PyPDF2 import PdfReader, PdfWriter
@@ -9,37 +9,37 @@ class PDFPageDeleter:
         self.root.title("PDF Page Deleter")
         
         # Setting the font
-        self.font_large = ("Helvetica", 16)
-        self.font_medium = ("Helvetica", 14)
+        self.font_large = ctk.CTkFont(family="Helvetica", size=16)
+        self.font_medium = ctk.CTkFont(family="Helvetica", size=14)
         
-        self.file_label = tk.Label(root, text="No file selected", font=self.font_medium)
+        self.file_label = ctk.CTkLabel(root, text="No file selected", font=self.font_medium)
         self.file_label.pack(pady=10)
         
-        self.select_button = tk.Button(root, text="Select PDF", command=self.select_file, font=self.font_medium, bg='#4CAF50', fg='white', padx=10, pady=5)
+        self.select_button = ctk.CTkButton(root, text="Select PDF", command=self.select_file, font=self.font_medium, fg_color='#4CAF50', text_color='white')
         self.select_button.pack(pady=10)
         
-        self.page_label = tk.Label(root, text="Pages to Delete (comma separated):", font=self.font_medium)
+        self.page_label = ctk.CTkLabel(root, text="Pages to Delete (comma separated):", font=self.font_medium)
         self.page_label.pack(pady=5)
         
-        self.page_entry = tk.Entry(root, font=self.font_medium)
+        self.page_entry = ctk.CTkEntry(root, font=self.font_medium)
         self.page_entry.pack(pady=5)
         
-        self.delete_button = tk.Button(root, text="Delete Pages",width=20, command=self.delete_pages, font=self.font_medium, bg='#f44336', fg='white', padx=10, pady=5)
+        self.delete_button = ctk.CTkButton(root, text="Delete Pages", width=200, command=self.delete_pages, font=self.font_medium, fg_color='#f44336', text_color='white')
         self.delete_button.pack(pady=10)
         
-        self.credit_label = tk.Label(root, text="Connect With Me", font=self.font_medium, fg='black')
+        self.credit_label = ctk.CTkLabel(root, text="Connect With Me", font=self.font_medium, text_color='black')
         self.credit_label.pack(padx=5, pady=20)
 
-        self.github_button = tk.Button(root, text="GitHub", width=20, command=lambda: webbrowser.open("https://github.com/jeturgavli"), font=self.font_medium, bg='#333333', fg='white', padx=10, pady=5)
+        self.github_button = ctk.CTkButton(root, text="GitHub", width=200, command=lambda: webbrowser.open("https://github.com/jeturgavli"), font=self.font_medium, fg_color='#333333', text_color='white')
         self.github_button.pack(padx=5, pady=5)
         
-        self.linkedin_button = tk.Button(root, text="LinkedIn", width=20, command=lambda: webbrowser.open("https://www.linkedin.com/in/jeturgavli"), font=self.font_medium, bg='#0077B5', fg='white', padx=10, pady=5)
+        self.linkedin_button = ctk.CTkButton(root, text="LinkedIn", width=200, command=lambda: webbrowser.open("https://www.linkedin.com/in/jeturgavli"), font=self.font_medium, fg_color='#0077B5', text_color='white')
         self.linkedin_button.pack(padx=5, pady=5)
         
-        self.instagram_button = tk.Button(root, text="Instagram", width=20, command=lambda: webbrowser.open("https://www.instagram.com/jetur_gavli_302"), font=self.font_medium, bg='#E4405F', fg='white', padx=10, pady=5)
+        self.instagram_button = ctk.CTkButton(root, text="Instagram", width=200, command=lambda: webbrowser.open("https://www.instagram.com/jetur_gavli_302"), font=self.font_medium, fg_color='#E4405F', text_color='white')
         self.instagram_button.pack(padx=5, pady=5)
 
-        self.credit_label = tk.Label(root, text="Program by Jetur Gavli", font=self.font_medium, fg='grey')
+        self.credit_label = ctk.CTkLabel(root, text="Program by Jetur Gavli", font=self.font_medium, text_color='grey')
         self.credit_label.pack(pady=10)
         
         self.file_path = None
@@ -84,13 +84,13 @@ class PDFPageDeleter:
                 with open(output_path, "wb") as output_file:
                     writer.write(output_file)
                 
-                messagebox.showinfo("Success", f"Pages {', '.join(map(str, [p + 1 for p in pages_to_delete]))} deleted successfully Dude!")
+                messagebox.showinfo("Success", f"Pages {', '.join(map(str, [p + 1 for p in pages_to_delete]))} deleted successfully!")
             else:
                 messagebox.showwarning("Warning", "Save operation cancelled!")
         except Exception as e:
             messagebox.showerror("Error", f"An error occurred: {e}")
 
 if __name__ == "__main__":
-    root = tk.Tk()
+    root = ctk.CTk()
     app = PDFPageDeleter(root)
     root.mainloop()
