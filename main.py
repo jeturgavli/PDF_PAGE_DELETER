@@ -47,9 +47,9 @@ class PDFPageDeleter:
     def select_file(self):
         self.file_path = filedialog.askopenfilename(filetypes=[("PDF files", "*.pdf")])
         if self.file_path:
-            self.file_label.config(text=self.file_path)
+            self.file_label.configure(text=self.file_path)
         else:
-            self.file_label.config(text="No file selected")
+            self.file_label.configure(text="No file selected")
     
     def delete_pages(self):
         if not self.file_path:
